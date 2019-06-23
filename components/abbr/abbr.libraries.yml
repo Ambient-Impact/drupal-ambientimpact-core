@@ -1,5 +1,0 @@
-component.abbr:
-  js:
-    abbr.js: {}
-  dependencies:
-    - ambientimpact_ux/component.tooltip
