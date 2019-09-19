@@ -1,5 +1,0 @@
-component.font:
-  js:
-    font.js: {}
-  dependencies:
-    - ambientimpact_core/fontfaceobserver
