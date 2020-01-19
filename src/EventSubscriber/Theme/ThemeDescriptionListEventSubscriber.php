@@ -10,8 +10,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 /**
  * hook_theme() event subscriber class to define 'description_list' element.
  */
-class HookThemeDescriptionListEventSubscriber
-implements EventSubscriberInterface {
+class ThemeDescriptionListEventSubscriber implements EventSubscriberInterface {
   /**
    * The Drupal module handler service.
    *
