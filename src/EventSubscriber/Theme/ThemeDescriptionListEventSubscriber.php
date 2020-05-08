@@ -4,14 +4,13 @@ namespace Drupal\ambientimpact_core\EventSubscriber\Theme;
 
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\hook_event_dispatcher\HookEventDispatcherInterface;
-use Drupal\hook_event_dispatcher\Event\Theme\ThemeEvent;
+use Drupal\core_event_dispatcher\Event\Theme\ThemeEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * hook_theme() event subscriber class to define 'description_list' element.
  */
-class HookThemeDescriptionListEventSubscriber
-implements EventSubscriberInterface {
+class ThemeDescriptionListEventSubscriber implements EventSubscriberInterface {
   /**
    * The Drupal module handler service.
    *
@@ -43,7 +42,7 @@ implements EventSubscriberInterface {
   /**
    * Defines the 'description_list' theme element.
    *
-   * @param \Drupal\hook_event_dispatcher\Event\Theme\ThemeEvent $event
+   * @param \Drupal\core_event_dispatcher\Event\Theme\ThemeEvent $event
    *   The event object.
    */
   public function theme(ThemeEvent $event) {
