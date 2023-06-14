@@ -3,7 +3,7 @@
 namespace Drupal\ambientimpact_core\Event;
 
 use Symfony\Component\DomCrawler\Crawler;
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * DOM crawler event.

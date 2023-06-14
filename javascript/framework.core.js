@@ -451,6 +451,10 @@
 			 *   that jQuery.removeOnce() is acting on.
 			 *
 			 * @see this.addBehaviours()
+			 *
+			 * @see https://www.drupal.org/node/3158256
+			 *   jQuery.once() replaced with the @drupal/once package in Drupal core
+			 *   9.2.0.
 			 */
 			this.addBehaviour = function(
 				behaviourName, onceName, selector, detachTriggers,
@@ -486,10 +490,13 @@
 				}
 
 				behaviour.attach = function(context, settings) {
-					getBehaviourTargets(selector, context)
-						.once(onceName).each(function() {
-							attach.apply(this, [context, settings]);
-						});
+
+					jQuery(once(
+						onceName, getBehaviourTargets(selector, context)
+					)).each(function() {
+						attach.apply(this, [context, settings]);
+					});
+
 				};
 
 				behaviour.detach = function(context, settings, trigger) {
@@ -503,10 +510,12 @@
 						return;
 					}
 
-					getBehaviourTargets(selector, context)
-						.removeOnce(onceName).each(function() {
-							detach.apply(this, [context, settings, trigger]);
-						});
+					jQuery(once.remove(
+						onceName, getBehaviourTargets(selector, context)
+					)).each(function() {
+						detach.apply(this, [context, settings, trigger]);
+					});
+
 				};
 
 				behaviours[behaviourName] = behaviour;

@@ -298,6 +298,22 @@ implements ComponentPluginManagerInterface{
    *
    * @todo Can we just rely on \fnmatch() to inform us if the pattern matches
    *   without checking for the presence of the '*' character?
+   *
+   * @todo Determine if relying on \fnmatch() is a good idea, as the PHP
+   *   documentation says it's not available on some platforms.
+   *
+   * @see https://github.com/mglaman/phpstan-drupal/blob/main/src/Rules/Drupal/Coder/DiscouragedFunctionsRule.php
+   *   \fnmatch() gets flagged by this via PHPStan when running Upgrade Status
+   *   module checks. We currently tell PHPStan to ignore that line via a PHPDoc
+   *   tag.
+   *
+   * @see https://www.drupal.org/project/drupal/issues/2620576
+   *   On the one hand, Drupal core removed uses of \fnmatch() for this reason.
+   *
+   * @see https://www.drupal.org/project/potx/issues/3246242#comment-14273364
+   *   On the other hand, Gábor Hojtsy, a core committer, disagrees and says
+   *   that it's unlikely for this to be missing, and only occurs on some custom
+   *   built Linux builds.
    */
   public function getComponentPaths(array $providerNames = []): array {
 
@@ -338,7 +354,10 @@ implements ComponentPluginManagerInterface{
 
         // Skip to the next provider pattern to check against if the pattern
         // doesn't match.
-        if (!\fnmatch($name, $definition['provider'])) {
+        if (
+          /** @phpstan-ignore-next-line */
+          !\fnmatch($name, $definition['provider'])
+        ) {
           continue;
         }
 

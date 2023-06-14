@@ -2,9 +2,10 @@
 
 namespace Drupal\ambientimpact_core\Template;
 
-use Twig\TwigFilter;
-use Twig\Error\RuntimeError;
 use Drupal\Component\Utility\NestedArray;
+use Twig\Extension\AbstractExtension;
+use Twig\Error\RuntimeError;
+use Twig\TwigFilter;
 
 /**
  * merge_recursive() Twig function.
@@ -15,7 +16,7 @@ use Drupal\Component\Utility\NestedArray;
  *
  * @todo Add support for merging Attributes objects rather than overwriting?
  */
-class MergeRecursiveTwigExtension extends \Twig_Extension {
+class MergeRecursiveTwigExtension extends AbstractExtension {
   /**
    * Returns an array of filters to declare to Twig.
    */

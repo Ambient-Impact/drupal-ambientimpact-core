@@ -4,8 +4,8 @@ namespace Drupal\ambientimpact_core\EventSubscriber\Theme;
 
 use Drupal\ambientimpact_core\ComponentPluginManagerInterface;
 use Drupal\Core\State\StateInterface;
-use Drupal\hook_event_dispatcher\HookEventDispatcherInterface;
 use Drupal\core_event_dispatcher\Event\Theme\PageAttachmentsEvent;
+use Drupal\core_event_dispatcher\PageHookEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -48,7 +48,7 @@ class PageAttachmentsEventSubscriber implements EventSubscriberInterface {
    */
   public static function getSubscribedEvents() {
     return [
-      HookEventDispatcherInterface::PAGE_ATTACHMENTS => 'pageAttachments',
+      PageHookEvents::PAGE_ATTACHMENTS => 'pageAttachments',
     ];
   }
 

@@ -8,7 +8,7 @@ framework:
   dependencies:
     - core/drupal
     - core/jquery
-    - core/jquery.once
+    - core/once
 
 ally.js:
   remote: https://allyjs.io/

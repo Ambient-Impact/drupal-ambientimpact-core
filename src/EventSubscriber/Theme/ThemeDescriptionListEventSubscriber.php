@@ -3,8 +3,8 @@
 namespace Drupal\ambientimpact_core\EventSubscriber\Theme;
 
 use Drupal\Core\Extension\ModuleHandlerInterface;
-use Drupal\hook_event_dispatcher\HookEventDispatcherInterface;
 use Drupal\core_event_dispatcher\Event\Theme\ThemeEvent;
+use Drupal\core_event_dispatcher\ThemeHookEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -35,7 +35,7 @@ class ThemeDescriptionListEventSubscriber implements EventSubscriberInterface {
    */
   public static function getSubscribedEvents() {
     return [
-      HookEventDispatcherInterface::THEME => 'theme',
+      ThemeHookEvents::THEME => 'theme',
     ];
   }
 

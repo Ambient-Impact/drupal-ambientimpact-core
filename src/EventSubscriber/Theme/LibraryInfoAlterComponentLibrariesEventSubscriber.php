@@ -3,8 +3,8 @@
 namespace Drupal\ambientimpact_core\EventSubscriber\Theme;
 
 use Drupal\ambientimpact_core\ComponentPluginManagerInterface;
-use Drupal\hook_event_dispatcher\HookEventDispatcherInterface;
 use Drupal\core_event_dispatcher\Event\Theme\LibraryInfoAlterEvent;
+use Drupal\core_event_dispatcher\ThemeHookEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -39,7 +39,7 @@ implements EventSubscriberInterface {
    */
   public static function getSubscribedEvents() {
     return [
-      HookEventDispatcherInterface::LIBRARY_INFO_ALTER => 'libraryInfoAlter',
+      ThemeHookEvents::LIBRARY_INFO_ALTER => 'libraryInfoAlter',
     ];
   }
 
