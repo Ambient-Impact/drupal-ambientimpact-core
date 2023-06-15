@@ -102,8 +102,8 @@ class DOMFilter extends FilterBase implements ContainerFactoryPluginInterface {
 
     // Dispatch the event with the event object.
     $this->eventDispatcher->dispatch(
-      'ambientimpact.dom_filter_process',
-      $event
+      $event,
+      'ambientimpact.dom_filter_process'
     );
 
     // Get the crawler with any modifications listeners/subscribers may have

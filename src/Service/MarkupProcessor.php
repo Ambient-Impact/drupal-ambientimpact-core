@@ -67,7 +67,7 @@ class MarkupProcessor implements MarkupProcessorInterface {
     $event = new DOMCrawlerEvent($crawler);
 
     // Dispatch the event with the event object.
-    $this->eventDispatcher->dispatch('ambientimpact.markup_process', $event);
+    $this->eventDispatcher->dispatch($event, 'ambientimpact.markup_process');
 
     // Get the crawler with any modifications listeners/subscribers may have
     // made to it.
