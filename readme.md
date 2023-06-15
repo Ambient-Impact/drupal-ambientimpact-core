@@ -9,7 +9,7 @@ work-in-progress. Stable releases may be provided at a later date.
 
 # Requirements
 
-* [Drupal 10](https://www.drupal.org/download) ([Drupal 8 is end-of-life](https://www.drupal.org/psa-2021-11-30))
+* [Drupal 10](https://www.drupal.org/download)
 
 * [Composer](https://getcomposer.org/)
 
