@@ -45,8 +45,7 @@ fastdom-promised:
     gpl-compatible: true
   js:
     vendor/fastdom/extensions/fastdom-promised.js: {
-      attributes: { defer: true },
-      minified:   true
+      attributes: { defer: true }
     }
   dependencies:
     - ambientimpact_core/fastdom
@@ -60,8 +59,7 @@ fastdom-sandbox:
     gpl-compatible: true
   js:
     vendor/fastdom/extensions/fastdom-sandbox.js: {
-      attributes: { defer: true },
-      minified:   true
+      attributes: { defer: true }
     }
   dependencies:
     - ambientimpact_core/fastdom
