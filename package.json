@@ -29,7 +29,7 @@
     "file-loader": "^6.0.0",
     "glob": "^8.0.3",
     "mini-css-extract-plugin": "^2.6.1",
-    "postcss": "^8.2.15",
+    "postcss": "^8.4.31",
     "postcss-loader": "^7.0.1",
     "sass": "^1.43.4",
     "sass-loader": "^13.1.0",
