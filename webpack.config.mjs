@@ -1,12 +1,22 @@
-'use strict';
+import Encore from '@symfony/webpack-encore';
+// import { glob } from 'glob'; // @todo Upgrade to glob 10.x which has ESM.
+import * as path from 'node:path';
+import { default as vendorize } from 'webpack-yarn-vendorize';
 
-const autoprefixer = require('autoprefixer');
-const componentPaths = require('drupal-ambientimpact-core/componentPaths');
-const Encore = require('@symfony/webpack-encore');
-const glob = require('glob');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const path = require('path');
-const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
+// The remaining modules do not yet have ESM versions and so are CommonJS only.
+// Because of this, they must be import()ed and destructured like so to behave
+// similarly to ESM imports.
+const { default: autoprefixer } = await import('autoprefixer');
+const { default: componentPaths } = await import(
+  'drupal-ambientimpact-core/componentPaths'
+);
+const { default: glob } = await import('glob');
+const { default: MiniCssExtractPlugin } = await import(
+  'mini-css-extract-plugin'
+);
+const { default: RemoveEmptyScriptsPlugin } = await import(
+  'webpack-remove-empty-scripts'
+);
 
 const distPath = '.webpack-dist';
 
@@ -36,7 +46,7 @@ function getGlobbedEntries() {
   return glob.sync(
     // This specifically only searches for SCSS files that aren't partials, i.e.
     // do not start with '_'.
-    `./!(${distPath})/**/!(_)*.scss`
+    `./!(${distPath}|${vendorize.getVendorDirName()})/**/!(_)*.scss`
   ).reduce(function(entries, currentPath) {
 
       const parsed = path.parse(currentPath);
@@ -54,8 +64,10 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
   Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
 }
 
-Encore
-.setOutputPath(path.resolve(__dirname, (outputToSourcePaths ? '.' : distPath)))
+Encore.setOutputPath(path.resolve(
+  path.dirname(new URL(import.meta.url).pathname),
+  (outputToSourcePaths ? '.' : distPath)
+))
 
 // Encore will complain if the public path doesn't start with a slash.
 // Unfortunately, it doesn't seem Webpack's automatic public path works here.
@@ -93,7 +105,9 @@ Encore
 // libraries will get deleted.
 //
 // @see https://github.com/johnagan/clean-webpack-plugin
-.cleanupOutputBeforeBuild(['**/*.css', '**/*.css.map', '!vendor/**'])
+.cleanupOutputBeforeBuild([
+  '**/*.css', '**/*.css.map', `!${vendorize.getVendorDirName()}/**`
+])
 
 .enableSourceMaps(!Encore.isProduction())
 
@@ -109,7 +123,9 @@ Encore
 .addPlugin(new RemoveEmptyScriptsPlugin())
 
 .enableSassLoader(function(options) {
-  options.sassOptions = {includePaths: componentPaths().all};
+  options.sassOptions = {
+    includePaths: componentPaths().all,
+  };
 })
 .enablePostCssLoader(function(options) {
   options.postcssOptions = {
@@ -124,8 +140,19 @@ Encore
 .configureMiniCssExtractPlugin(function(config) {
   config.publicPath = 'auto';
 })
-// Disable the Encore image rule as we don't use it at the moment and it may try
-// to bundle images from the vendor directory which we also don't want.
-.configureImageRule({enabled: false});
 
-module.exports = Encore.getWebpackConfig();
+// Disable the Encore image rule because we provide our own loader config.
+.configureImageRule({enabled: false})
+
+// This disables asset bundling/copying for certain asset types.
+//
+// @see https://stackoverflow.com/questions/68737296/disable-asset-bundling-in-webpack-5#68768905
+.addLoader({
+  test: /\.(png|jpe?g|gif|svg)$/i,
+  type: 'asset/resource',
+  generator: {
+    emit: false,
+  },
+});
+
+export default Encore.getWebpackConfig();

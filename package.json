@@ -4,8 +4,8 @@
   "license": "GPL-2.0-or-later",
   "repository": "github:Ambient-Impact/drupal-ambientimpact-core",
   "scripts": {
-    "build": "webpack --progress --config webpack.config.js",
-    "build:vendor": "webpack --progress --config webpack.vendor.js",
+    "build": "webpack --progress --config webpack.config.mjs",
+    "build:vendor": "webpack --progress --config webpack.vendor.mjs",
     "postinstall": "yarn run build:vendor"
   },
   "exports": {
@@ -13,7 +13,7 @@
   },
   "yarn.build": {
     "input": [
-      "webpack.config.js",
+      "webpack.config.mjs",
       "**/components/**/*.scss"
     ],
     "output": [
@@ -36,12 +36,18 @@
     "sassy-lists": "^3.0.1",
     "webpack": "^5.88.2",
     "webpack-cli": "^4.10.0",
-    "webpack-remove-empty-scripts": "^1.0.1"
+    "webpack-remove-empty-scripts": "^1.0.1",
+    "webpack-yarn-vendorize": "github:Ambient-Impact/webpack-yarn-vendorize#49113a6b8ff822c47522cd39b96155b4b8c15750"
   },
   "dependencies": {
     "ally.js": "^1.4.1",
     "fastdom": "^1.0.10",
     "include-media": "^1.4.10",
     "strictdom": "^1.0.1"
-  }
+  },
+  "vendorize": [
+    "ally.js",
+    "fastdom",
+    "strictdom"
+  ]
 }
