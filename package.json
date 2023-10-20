@@ -37,7 +37,7 @@
     "webpack": "^5.88.2",
     "webpack-cli": "^4.10.0",
     "webpack-remove-empty-scripts": "^1.0.1",
-    "webpack-yarn-vendorize": "github:Ambient-Impact/webpack-yarn-vendorize#11330d9627b0c7cfc7e028e2225b7caf2fb37815"
+    "webpack-yarn-vendorize": "github:Ambient-Impact/webpack-yarn-vendorize#71db465c742fb184ced7346a06ab3dbc3d99c2a2"
   },
   "dependencies": {
     "ally.js": "^1.4.1",
