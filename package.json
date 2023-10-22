@@ -29,6 +29,7 @@
     "file-loader": "^6.0.0",
     "glob": "^8.0.3",
     "mini-css-extract-plugin": "^2.6.1",
+    "pnp-vendorize": "github:Ambient-Impact/pnp-vendorize#1030d968013bad44cda10fd75e18b25d6dabb35d",
     "postcss": "^8.4.31",
     "postcss-loader": "^7.0.1",
     "sass": "^1.43.4",
@@ -36,8 +37,7 @@
     "sassy-lists": "^3.0.1",
     "webpack": "^5.88.2",
     "webpack-cli": "^4.10.0",
-    "webpack-remove-empty-scripts": "^1.0.1",
-    "webpack-yarn-vendorize": "github:Ambient-Impact/webpack-yarn-vendorize#71db465c742fb184ced7346a06ab3dbc3d99c2a2"
+    "webpack-remove-empty-scripts": "^1.0.1"
   },
   "dependencies": {
     "ally.js": "^1.4.1",
