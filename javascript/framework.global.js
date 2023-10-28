@@ -122,6 +122,22 @@
 		}
 	}
 
+  /**
+   * All existing <script> elements currently in the DOM.
+   *
+   * @type {NodeList}
+   */
+  const existingScriptElements = document.querySelectorAll('script');
+
+  // Attach the event handler to all existing <script> elements. This is
+  // necessary for <script> elements with the 'defer' attribute because they
+  // may not have loaded yet (so the global will not yet exist), but they also
+  // won't be found by the MutationObserver as added nodes because they already
+  // exist at the time the MutationObserver starts observing.
+  for (let i = existingScriptElements.length - 1; i >= 0; i--) {
+    existingScriptElements[i].addEventListener('load', scriptLoadHandler);
+  }
+
 	// MutationObserver that watches for any <script> elements that are added to
 	// the document. When one appears, it attaches scriptLoadHandler() as a
 	// 'load' handler.
