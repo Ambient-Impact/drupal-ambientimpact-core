@@ -1,7 +1,7 @@
 import Encore from '@symfony/webpack-encore';
 // import { glob } from 'glob'; // @todo Upgrade to glob 10.x which has ESM.
 import * as path from 'node:path';
-import { default as vendorize } from 'webpack-yarn-vendorize';
+import { default as vendorize } from 'pnp-vendorize';
 
 // The remaining modules do not yet have ESM versions and so are CommonJS only.
 // Because of this, they must be import()ed and destructured like so to behave
