@@ -11,9 +11,6 @@ const { default: componentPaths } = await import(
   'drupal-ambientimpact-core/componentPaths'
 );
 const { default: glob } = await import('glob');
-const { default: MiniCssExtractPlugin } = await import(
-  'mini-css-extract-plugin'
-);
 const { default: RemoveEmptyScriptsPlugin } = await import(
   'webpack-remove-empty-scripts'
 );
