@@ -3,16 +3,15 @@ import Encore from '@symfony/webpack-encore';
 import * as path from 'node:path';
 import { default as vendorize } from 'pnp-vendorize';
 
-// The remaining modules do not yet have ESM versions and so are CommonJS only.
-// Because of this, they must be import()ed and destructured like so to behave
-// similarly to ESM imports.
+// The remaining modules are CommonJS only. Because of this, they must be
+// import()ed and destructured like so to behave similarly to ESM imports.
 const { default: autoprefixer } = await import('autoprefixer');
 const { default: componentPaths } = await import(
-  'drupal-ambientimpact-core/componentPaths'
+  'drupal-ambientimpact-core/componentPaths',
 );
 const { default: glob } = await import('glob');
 const { default: RemoveEmptyScriptsPlugin } = await import(
-  'webpack-remove-empty-scripts'
+  'webpack-remove-empty-scripts',
 );
 
 const distPath = '.webpack-dist';
