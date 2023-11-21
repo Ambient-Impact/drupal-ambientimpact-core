@@ -27,7 +27,7 @@
     "autoprefixer": "^10.2.5",
     "css-loader": "^6.7.1",
     "file-loader": "^6.0.0",
-    "glob": "^8.0.3",
+    "glob": "^10.3.10",
     "mini-css-extract-plugin": "^2.6.1",
     "pnp-vendorize": "github:Ambient-Impact/pnp-vendorize#1030d968013bad44cda10fd75e18b25d6dabb35d",
     "postcss": "^8.4.31",
