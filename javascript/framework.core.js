@@ -402,7 +402,7 @@
 						// after Drupal has already attached other behaviours.
 						if (drupalHasAttached === true) {
 							Drupal.behaviors[behaviourName]
-								.attach(document.body);
+								.attach(document);
 						}
 					}
 				}
