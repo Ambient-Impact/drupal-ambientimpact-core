@@ -1,7 +1,7 @@
 import Encore from '@symfony/webpack-encore';
 import { glob } from 'glob';
 import * as path from 'node:path';
-import { default as vendorize } from 'pnp-vendorize';
+import { default as vendorize } from '@consensus.enterprises/pnp-vendorize';
 
 // The remaining modules are CommonJS only. Because of this, they must be
 // import()ed and destructured like so to behave similarly to ESM imports.
