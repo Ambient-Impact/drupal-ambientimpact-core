@@ -1,0 +1,14 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * Rebuild cached component plug-in discovery for new discovery cache tags.
+ */
+function ambientimpact_core_update_10201(): void {
+
+  \Drupal::service(
+    'plugin.manager.ambientimpact_component',
+  )->clearCachedDefinitions();
+
+}

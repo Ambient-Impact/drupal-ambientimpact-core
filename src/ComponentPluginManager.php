@@ -95,7 +95,18 @@ implements ComponentPluginManagerInterface{
     // definitions are discovered by examining the directory defined above, for
     // any classes with a ComponentAnnotation::class. The annotations are read,
     // and then the resulting data is cached using the provided cache backend.
-    $this->setCacheBackend($cacheBackend, 'ambientimpact_component_info');
+    $this->setCacheBackend($cacheBackend, 'ambientimpact_component_info', [
+
+      // If we ever need to specifically invalidate just component info, this
+      // provides a cache tag to do do just that.
+      'ambientimpact_component_info',
+
+      // Components are very closely tied to libraries so adding this cache
+      // tag makes it easy to rediscover all components when library
+      // definitions are invalidated.
+      'library_info',
+
+    ]);
   }
 
   /**
