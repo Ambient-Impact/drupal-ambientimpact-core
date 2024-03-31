@@ -5,4 +5,8 @@
 ///
 /// General spacing value used as a base for many other variables.
 ///
+/// @deprecated
+///   This will be removed and use is discouraged. Use rem units instead and/or
+///   leave this to themes.
+///
 $general-spacing: 1em !default;
