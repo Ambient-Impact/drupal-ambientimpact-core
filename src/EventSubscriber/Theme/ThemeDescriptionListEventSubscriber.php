@@ -9,6 +9,10 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * hook_theme() event subscriber class to define 'description_list' element.
+ *
+ * @deprecated in 2.x; will be removed in 3.0.
+ *
+ * @see https://www.drupal.org/project/description_list
  */
 class ThemeDescriptionListEventSubscriber implements EventSubscriberInterface {
   /**
@@ -46,6 +50,14 @@ class ThemeDescriptionListEventSubscriber implements EventSubscriberInterface {
    *   The event object.
    */
   public function theme(ThemeEvent $event) {
+
+    // Don't register our implementation if one already exists.
+    //
+    // @see https://www.drupal.org/project/description_list
+    if (isset($event->getExisting()['description_list'])) {
+      return;
+    }
+
     $event->addNewTheme('description_list', [
       'variables' => [
         'groups'    => [],
