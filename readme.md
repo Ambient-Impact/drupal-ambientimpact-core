@@ -9,7 +9,7 @@ work-in-progress. Stable releases may be provided at a later date.
 
 # Requirements
 
-* [Drupal 10](https://www.drupal.org/download)
+* [Drupal 10 or 11](https://www.drupal.org/download)
 
 * [Composer](https://getcomposer.org/)
 

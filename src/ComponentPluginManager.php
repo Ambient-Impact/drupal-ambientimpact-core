@@ -59,7 +59,19 @@ implements ComponentPluginManagerInterface{
    * @see \Drupal\plugin_type_example\SandwichPluginManager
    *   This method is based heavily on the sandwich manager from the
    *   'examples' module.
+   *
+   * @see \mglaman\PHPStanDrupal\Rules\Drupal\PluginManager\PluginManagerSetsCacheBackendRule
+   *   Complains about us using 'library_info' which is why we ignore the
+   *   constructor. Note that the library does not have rule identifiers at the
+   *   time of writing.
+   *
+   * @see https://github.com/mglaman/phpstan-drupal/issues/199
+   *   Issue regarding this rule being "over-grabby" like in our case.
+   *
+   * @see https://github.com/mglaman/phpstan-drupal/issues/772
+   *   Issue to add rule identifiers.
    */
+  /** @phpstan-ignore-next-line */
   public function __construct(
     \Traversable $namespaces,
     CacheBackendInterface $cacheBackend,

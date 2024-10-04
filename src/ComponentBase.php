@@ -14,6 +14,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslationInterface;
+use function method_exists;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -442,7 +443,24 @@ ContainerFactoryPluginInterface, ConfigurableInterface, ComponentInterface {
       ];
 
       // Render the inline template.
-      $html = $this->renderer->renderPlain($renderArray);
+      if (method_exists($this->renderer, 'renderInIsolation')) {
+
+        // Drupal >= 10.3
+        //
+        // @see https://www.drupal.org/node/3407994
+        //   Change record deprecating RendererInterface::renderPlain() in
+        //   favour of RendererInterface::renderInIsolation().
+        $html = $this->renderer->renderInIsolation($renderArray);
+
+      } else {
+
+        // Drupal < 10.3
+        //
+        // @todo Remove when minimum core is increased to 10.3 or higher.
+        /** @phpstan-ignore-next-line */
+        $html = $this->renderer->renderPlain($renderArray);
+
+      }
 
       $cacheSettings = static::getHTMLCacheSettings();
 
