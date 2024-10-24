@@ -490,7 +490,7 @@ ContainerFactoryPluginInterface, ConfigurableInterface, ComponentInterface {
   public function hasDemo(): bool {
     $reflection = new \ReflectionMethod($this, 'getDemo');
 
-    return get_class() !== $reflection->getDeclaringClass()->getName();
+    return self::class !== $reflection->getDeclaringClass()->getName();
   }
 
   /**
