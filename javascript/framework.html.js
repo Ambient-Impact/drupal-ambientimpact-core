@@ -174,8 +174,13 @@ AmbientImpact.onGlobals([
   AmbientImpact.component.prototype.getHTML = function() {
     var machineName = this.getName();
 
-    if (machineName in receivedHTML) {
-      return receivedHTML[machineName];
+    const i = settings.html.haveHTML.indexOf(machineName);
+
+    if (i > -1) {
+      // We specifically want to get the cached HTML as receivedHTML may not
+      // have been populated with this component's HTML in some cases when
+      // navigating around the site with RefreshLess.
+      return getCachedHTML(settings.html.haveHTML[i]);
 
     } else {
       return '';
