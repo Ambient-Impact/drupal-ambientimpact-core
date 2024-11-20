@@ -52,13 +52,17 @@ interface ComponentPluginManagerInterface {
   /**
    * Get all libraries defined by components.
    *
+   * @param string $extension
+   *   The extension to get component libraries for. If omitted, will return
+   *   libraries for all extensions.
+   *
    * @return array
    *   A libraries array in the format hook_library_info_build() expects.
    *
    * @see https://api.drupal.org/api/drupal/core!lib!Drupal!Core!Render!theme.api.php/function/hook_library_info_build
    * @see https://www.drupal.org/docs/8/creating-custom-modules/adding-stylesheets-css-and-javascript-js-to-a-drupal-8-module
    */
-  public function getComponentLibraries(): array;
+  public function getComponentLibraries(string $extension = ''): array;
 
   /**
    * Get JavaScript settings from all available components.

@@ -177,11 +177,17 @@ implements ComponentPluginManagerInterface{
   /**
    * {@inheritdoc}
    */
-  public function getComponentLibraries(): array {
+  public function getComponentLibraries(string $extension = ''): array {
+
     $libraries = [];
 
-    foreach ($this->getDefinitions() as $componentID => $definition) {
-      $instance = $this->getComponentInstance($componentID);
+    foreach ($this->getDefinitions() as $componentId => $definition) {
+
+      if (!empty($extension) && $definition['provider'] !== $extension) {
+        continue;
+      }
+
+      $instance = $this->getComponentInstance($componentId);
 
       if ($instance === false) {
         continue;
@@ -189,11 +195,13 @@ implements ComponentPluginManagerInterface{
 
       $libraries = NestedArray::mergeDeep(
         $libraries,
-        $instance->getLibraries()
+        $instance->getLibraries(),
       );
+
     }
 
     return $libraries;
+
   }
 
   /**

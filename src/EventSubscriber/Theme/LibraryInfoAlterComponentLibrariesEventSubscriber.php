@@ -55,12 +55,14 @@ implements EventSubscriberInterface {
    * @see https://www.drupal.org/docs/8/creating-custom-modules/adding-stylesheets-css-and-javascript-js-to-a-drupal-8-module#dynamic-css-js
    */
   public function libraryInfoAlter(LibraryInfoAlterEvent $event) {
+
     $libraries = &$event->getLibraries();
 
-    $componentLibraries = $this->componentManager->getComponentLibraries();
-
-    foreach ($componentLibraries as $machineName => $library) {
+    foreach ($this->componentManager->getComponentLibraries(
+      $event->getExtension(),
+    ) as $machineName => $library) {
       $libraries[$machineName] = $library;
     }
+
   }
 }

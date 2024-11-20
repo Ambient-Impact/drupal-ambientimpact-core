@@ -12,3 +12,12 @@ function ambientimpact_core_update_10201(): void {
   )->clearCachedDefinitions();
 
 }
+
+/**
+ * Rebuild library definitions to fix all components added to all extensions.
+ */
+function ambientimpact_core_update_10202(): void {
+
+  \Drupal::service('library.discovery')->clearCachedDefinitions();
+
+}
