@@ -21,3 +21,14 @@ function ambientimpact_core_update_10202(): void {
   \Drupal::service('library.discovery')->clearCachedDefinitions();
 
 }
+
+/**
+ * Rebuild libraries for AmbientImpact.onGlobals() + RefreshLess fix.
+ */
+function ambientimpact_core_update_10203(): void {
+
+  \Drupal::service('library.discovery')->clearCachedDefinitions();
+
+  \Drupal::service('asset.query_string')->reset();
+
+}
