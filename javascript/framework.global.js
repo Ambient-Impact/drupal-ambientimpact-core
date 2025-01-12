@@ -163,4 +163,16 @@
 		childList:	true,
 		subtree:	true
 	});
+
+  // If the RefreshLess module is installed, drupalSettings <script> elements
+  // will not be added to the document when navigating which means they won't
+  // be caught by our MutationObserver, but the module will trigger an event
+  // when it updates drupalSettings from values found in the response.
+  //
+  // @see https://www.drupal.org/project/refreshless
+  document.documentElement.addEventListener(
+    'refreshless:drupal-settings-update',
+    scriptLoadHandler,
+  );
+
 })();
