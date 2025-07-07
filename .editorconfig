@@ -1,0 +1,6 @@
+# Ensure these legacy files don't get rewritten using spaces for now to prevent
+# massive diffs.
+#
+# @todo Remove when these are rewritten using 2 space indent.
+[javascript/{framework.cache.js,framework.core.js,framework.global.js,framework.object.js,framework.stub.js}]
+indent_style = tab
