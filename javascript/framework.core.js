@@ -121,6 +121,16 @@
 		// whole framework.
 		this.mustard = mustard;
 
+		this.defaults = {
+			// Only 'unload' is used by default because most components only need to
+			// be detached when the page is unloading and not during other triggers,
+			// such as 'serialize' which is triggered by Drupal's Ajax framework
+			// before sending an Ajax request or form submission. Individual
+			// components can override this as needed, and this default can be
+			// altered globally if needed.
+			detachTriggers: ['unload'],
+		};
+
 		/**
 		 * Register a Promise that delays component registration/initialization.
 		 *
@@ -481,12 +491,8 @@
 				}
 
 				// If detachTriggers is not an array, set it to the default.
-				// 'unload' is used because most components only need to be
-				// detached when the page is unloading and not during
-				// 'serialize', during which only some form items will need to
-				// be detached.
 				if (!Array.isArray(detachTriggers)) {
-					detachTriggers	= ['unload'];
+					detachTriggers = thisFramework.defaults.detachTriggers;
 				}
 
 				behaviour.attach = function(context, settings) {
