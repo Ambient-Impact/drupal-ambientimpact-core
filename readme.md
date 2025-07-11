@@ -122,3 +122,9 @@ The following major version bumps indicate breaking changes:
   * Requires [Drupal 10](https://www.drupal.org/project/drupal/releases/10.0.0) due to non-backwards compatible change to [`\Drupal\Component\EventDispatcher\ContainerAwareEventDispatcher::dispatch()`](https://git.drupalcode.org/project/drupal/-/commit/7b324dd8f18919fc4d728bdb0afbcf27c8c02cb2#6e9d627c11801448b7a793c204471d8f951ae2fb).
 
   * Requires [Hook Event Dispatcher](https://www.drupal.org/project/hook_event_dispatcher) 4.0 which supports Drupal 10.
+
+* 3.x:
+
+  * The description list template has been removed and ported to the [Description List project on Drupal.org](https://www.drupal.org/project/description_list).
+
+  * Increased minimum core to remove [unsupported versions](https://endoflife.date/drupal), now: `^10.4 || ^11.1`

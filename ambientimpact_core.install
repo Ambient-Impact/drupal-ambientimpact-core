@@ -32,3 +32,14 @@ function ambientimpact_core_update_10203(): void {
   \Drupal::service('asset.query_string')->reset();
 
 }
+
+/**
+ * Rebuild container and Twig cache for removal of description list template.
+ */
+function ambientimpact_core_update_10301(): void {
+
+  \Drupal::service('kernel')->invalidateContainer();
+
+  \Drupal::service('twig')->invalidate();
+
+}
