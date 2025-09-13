@@ -70,9 +70,9 @@ $foreground-on-dark: white !default;
 ///
 @function get-brightness($colour) {
   @return math.div(
-    (color.red($colour)   * .299) +
-    (color.green($colour) * .587) +
-    (color.blue($colour)  * .114),
+    (color.channel($colour, 'red',    $space: rgb) * .299) +
+    (color.channel($colour, 'green',  $space: rgb) * .587) +
+    (color.channel($colour, 'blue',   $space: rgb) * .114),
     255 * 100%
   );
 }
@@ -203,10 +203,10 @@ $foreground: get-contrasting(
 ///
 @function invert-lightness($colour) {
   @return hsla(
-    color.hue($colour),
-    color.saturation($colour),
-    100% - color.lightness($colour),
-    color.alpha($colour)
+    color.channel($colour, 'hue',         $space: hsl),
+    color.channel($colour, 'saturation',  $space: hsl),
+    100% - color.channel($colour, 'lightness', $space: hsl),
+    color.channel($colour, 'alpha')
   );
 }
 
