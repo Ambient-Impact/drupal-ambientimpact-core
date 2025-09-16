@@ -17,8 +17,8 @@
   "require": {
     "drupal/core": "^10.4 || ^11.1",
     "drupal/hook_event_dispatcher": "^4.0",
-    "symfony/css-selector": "^6.2",
-    "symfony/dom-crawler": "^6.2"
+    "symfony/css-selector": "^6.2 || ^7.3",
+    "symfony/dom-crawler": "^6.2 || ^7.3"
   },
   "extra": {
     "drush": {
