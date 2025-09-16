@@ -11,7 +11,7 @@ AmbientImpact.addComponent('jquery.textNodes', function(aijQueryTextNodes, $) {
     textNodes: function() {
       return this.filter(function() {
         // Return only text nodes that aren't empty.
-        return this.nodeType === 3 && $.trim($(this).text()) != '';
+        return this.nodeType === 3 && $(this).text().trim() != '';
       });
     }
   });
