@@ -4,6 +4,8 @@ services:
     class: Drupal\ambientimpact_core\ComponentPluginManager
     parent: default_plugin_manager
 
+  Drupal\ambientimpact_core\ComponentPluginManagerInterface: '@plugin.manager.ambientimpact_component'
+
   # Component HTML cache bin.
   cache.ambientimpact_component_html:
     class: Drupal\Core\Cache\CacheBackendInterface
@@ -23,6 +25,8 @@ services:
   ambientimpact.markup_processor:
     class: Drupal\ambientimpact_core\Service\MarkupProcessor
     arguments: ['@event_dispatcher']
+
+  Drupal\ambientimpact_core\Service\MarkupProcessorInterface: '@ambientimpact.markup_processor'
 
   # Component libraries hook_library_info_alter() event subscriber.
   ambientimpact_core.library_info_alter_component_libraries_event_subscriber:
